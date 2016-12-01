@@ -5,7 +5,7 @@
 LOCAL_PATH := $(call my-dir)
 
 # HAL module implemenation, not prelinked and stored in
-# /system/lib/hw/hwcomposer.amlogic.so
+# /system/lib/hw/hwcomposer.$(TARGET_DEVICE).so
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_RELATIVE_PATH := hw
@@ -23,8 +23,9 @@ MESON_GRALLOC_DIR ?= hardware/amlogic/gralloc
 LOCAL_C_INCLUDES += \
     $(MESON_GRALLOC_DIR)
 
-LOCAL_C_INCLUDES += system/core/libion/include/ \
-                system/core/libion/kernel-headers
+LOCAL_C_INCLUDES += \
+    system/core/libion/include/ \
+    system/core/libion/kernel-headers
 
 ifneq ($(WITH_LIBPLAYER_MODULE),false)
 LOCAL_SHARED_LIBRARIES += libamavutils_alsa
@@ -41,8 +42,9 @@ LOCAL_CFLAGS += -DSINGLE_EXTERNAL_DISPLAY_USE_FB1
 endif
 endif
 
-LOCAL_MODULE := hwcomposer.amlogic
+LOCAL_MODULE := hwcomposer.$(TARGET_DEVICE)
 LOCAL_CFLAGS += -DLOG_TAG=\"hwcomposer\"
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
