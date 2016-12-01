@@ -42,6 +42,11 @@ LOCAL_CFLAGS += -DSINGLE_EXTERNAL_DISPLAY_USE_FB1
 endif
 endif
 
+ifneq ($(BOARD_USES_CURSOR_LAYER),false)
+# cursor layer supported in hwc 1.4
+LOCAL_CFLAGS += -DENABLE_CURSOR_LAYER=1
+endif
+
 LOCAL_MODULE := hwcomposer.$(TARGET_DEVICE)
 LOCAL_CFLAGS += -DLOG_TAG=\"hwcomposer\"
 LOCAL_MODULE_TAGS := optional

@@ -100,7 +100,6 @@
             continue;\
         }
 #else
-#define ENABLE_CURSOR_LAYER 1//cursor layer supported in hwc 1.4
 #define CHK_SKIP_DISPLAY_FB0(dispIdx)   //nothing to do
 #endif
 
